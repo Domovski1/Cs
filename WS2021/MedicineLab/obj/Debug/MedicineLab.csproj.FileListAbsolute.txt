@@ -1,7 +1,6 @@
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\MedicineLab.exe.config
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\MedicineLab.exe
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\MedicineLab.pdb
-C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.csprojAssemblyReference.cache
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MainWindow.g.cs
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\Pages\SignIn.g.cs
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\App.g.cs
@@ -15,3 +14,10 @@ C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.csproj.Gen
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.csproj.CoreCompileInputs.cache
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.exe
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.pdb
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\EntityFramework.dll
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\EntityFramework.xml
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab_Content.g.cs
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.csproj.CopyComplete
