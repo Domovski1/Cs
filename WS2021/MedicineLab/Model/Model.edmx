@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище MedLabModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Analyzer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BioMaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="BarCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateGetted" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsuraneCompany">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="InsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="INN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BIK" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UA" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsuraneType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BioID" Type="int" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="Result" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DateFinished" Type="date" />
+          <Property Name="Accepted" Type="bit" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="AnalyzerID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="DataID" Type="int" Nullable="false" />
+          <Property Name="InsuraneCompanyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="SocialSecurityNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EIN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassportSerria" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="PassportNumber" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="InsuraneTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Devision" Type="nvarchar" MaxLength="50" />
+          <Property Name="DurationInDays" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="30" />
+          <Property Name="LastEnter" Type="datetime" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ServiceCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TimeVisited" Type="datetime" Nullable="false" />
+          <Property Name="Success" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BioMaterial_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="BioMaterial" Type="Self.BioMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BioMaterial">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Analyzer">
+          <End Role="Analyzer" Type="Self.Analyzer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AnalyzerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_BioMaterial">
+          <End Role="BioMaterial" Type="Self.BioMaterial" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BioMaterial">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="BioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_InsuraneCompany">
+          <End Role="InsuraneCompany" Type="Self.InsuraneCompany" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuraneCompany">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="InsuraneCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_PatientData">
+          <End Role="PatientData" Type="Self.PatientData" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="DataID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientData_InsuraneType">
+          <End Role="InsuraneType" Type="Self.InsuraneType" Multiplicity="1" />
+          <End Role="PatientData" Type="Self.PatientData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuraneType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PatientData">
+              <PropertyRef Name="InsuraneTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserService_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="UserService" Type="Self.UserService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="UserService">
+              <PropertyRef Name="ServiceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserService_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserService" Type="Self.UserService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserService">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MedLabModelContainer">
+          <EntitySet Name="Analyzer" EntityType="Self.Analyzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BioMaterial" EntityType="Self.BioMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuraneCompany" EntityType="Self.InsuraneCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuraneType" EntityType="Self.InsuraneType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientData" EntityType="Self.PatientData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserService" EntityType="Self.UserService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visit" EntityType="Self.Visit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BioMaterial_Patient" Association="Self.FK_BioMaterial_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="BioMaterial" EntitySet="BioMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Analyzer" Association="Self.FK_Order_Analyzer">
+            <End Role="Analyzer" EntitySet="Analyzer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_BioMaterial" Association="Self.FK_Order_BioMaterial">
+            <End Role="BioMaterial" EntitySet="BioMaterial" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Service" Association="Self.FK_Order_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_InsuraneCompany" Association="Self.FK_Patient_InsuraneCompany">
+            <End Role="InsuraneCompany" EntitySet="InsuraneCompany" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_PatientData" Association="Self.FK_Patient_PatientData">
+            <End Role="PatientData" EntitySet="PatientData" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientData_InsuraneType" Association="Self.FK_PatientData_InsuraneType">
+            <End Role="InsuraneType" EntitySet="InsuraneType" />
+            <End Role="PatientData" EntitySet="PatientData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserService_Service" Association="Self.FK_UserService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="UserService" EntitySet="UserService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserService_User" Association="Self.FK_UserService_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserService" EntitySet="UserService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_User" Association="Self.FK_Visit_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Visit" EntitySet="Visit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Analyzer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Analyzer" FromRole="Analyzer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="BioMaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="BarCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateGetted" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_BioMaterial_Patient" FromRole="BioMaterial" ToRole="Patient" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_BioMaterial" FromRole="BioMaterial" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="InsuraneCompany">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BIK" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UA" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_InsuraneCompany" FromRole="InsuraneCompany" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="InsuraneType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PatientData" Relationship="Self.FK_PatientData_InsuraneType" FromRole="InsuraneType" ToRole="PatientData" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BioID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DateFinished" Type="DateTime" Precision="0" />
+          <Property Name="Accepted" Type="Boolean" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AnalyzerID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Analyzer" Relationship="Self.FK_Order_Analyzer" FromRole="Order" ToRole="Analyzer" />
+          <NavigationProperty Name="BioMaterial" Relationship="Self.FK_Order_BioMaterial" FromRole="Order" ToRole="BioMaterial" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Order_Service" FromRole="Order" ToRole="Service" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataID" Type="Int32" Nullable="false" />
+          <Property Name="InsuraneCompanyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BioMaterial" Relationship="Self.FK_BioMaterial_Patient" FromRole="Patient" ToRole="BioMaterial" />
+          <NavigationProperty Name="InsuraneCompany" Relationship="Self.FK_Patient_InsuraneCompany" FromRole="Patient" ToRole="InsuraneCompany" />
+          <NavigationProperty Name="PatientData" Relationship="Self.FK_Patient_PatientData" FromRole="Patient" ToRole="PatientData" />
+        </EntityType>
+        <EntityType Name="PatientData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SocialSecurityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EIN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportSerria" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="InsuraneTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsuraneType" Relationship="Self.FK_PatientData_InsuraneType" FromRole="PatientData" ToRole="InsuraneType" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_PatientData" FromRole="PatientData" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Devision" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DurationInDays" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Service" FromRole="Service" ToRole="Order" />
+          <NavigationProperty Name="UserService" Relationship="Self.FK_UserService_Service" FromRole="Service" ToRole="UserService" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LastEnter" Type="DateTime" Precision="3" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="UserService" Relationship="Self.FK_UserService_User" FromRole="User" ToRole="UserService" />
+          <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_User" FromRole="User" ToRole="Visit" />
+        </EntityType>
+        <EntityType Name="UserService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_UserService_Service" FromRole="UserService" ToRole="Service" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserService_User" FromRole="UserService" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="TimeVisited" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Success" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Visit_User" FromRole="Visit" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Order_Analyzer">
+          <End Role="Analyzer" Type="Self.Analyzer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AnalyzerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BioMaterial_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="BioMaterial" Type="Self.BioMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BioMaterial">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_BioMaterial">
+          <End Role="BioMaterial" Type="Self.BioMaterial" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BioMaterial">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="BioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_InsuraneCompany">
+          <End Role="InsuraneCompany" Type="Self.InsuraneCompany" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuraneCompany">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="InsuraneCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientData_InsuraneType">
+          <End Role="InsuraneType" Type="Self.InsuraneType" Multiplicity="1" />
+          <End Role="PatientData" Type="Self.PatientData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuraneType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PatientData">
+              <PropertyRef Name="InsuraneTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_PatientData">
+          <End Role="PatientData" Type="Self.PatientData" Multiplicity="1" />
+          <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="DataID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserService_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="UserService" Type="Self.UserService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="UserService">
+              <PropertyRef Name="ServiceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserService_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserService" Type="Self.UserService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserService">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MedLabEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Analyzer" EntityType="Self.Analyzer" />
+          <EntitySet Name="BioMaterial" EntityType="Self.BioMaterial" />
+          <EntitySet Name="InsuraneCompany" EntityType="Self.InsuraneCompany" />
+          <EntitySet Name="InsuraneType" EntityType="Self.InsuraneType" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" />
+          <EntitySet Name="PatientData" EntityType="Self.PatientData" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserService" EntityType="Self.UserService" />
+          <EntitySet Name="Visit" EntityType="Self.Visit" />
+          <AssociationSet Name="FK_Order_Analyzer" Association="Self.FK_Order_Analyzer">
+            <End Role="Analyzer" EntitySet="Analyzer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BioMaterial_Patient" Association="Self.FK_BioMaterial_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="BioMaterial" EntitySet="BioMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_BioMaterial" Association="Self.FK_Order_BioMaterial">
+            <End Role="BioMaterial" EntitySet="BioMaterial" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_InsuraneCompany" Association="Self.FK_Patient_InsuraneCompany">
+            <End Role="InsuraneCompany" EntitySet="InsuraneCompany" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientData_InsuraneType" Association="Self.FK_PatientData_InsuraneType">
+            <End Role="InsuraneType" EntitySet="InsuraneType" />
+            <End Role="PatientData" EntitySet="PatientData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Service" Association="Self.FK_Order_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_PatientData" Association="Self.FK_Patient_PatientData">
+            <End Role="PatientData" EntitySet="PatientData" />
+            <End Role="Patient" EntitySet="Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserService_Service" Association="Self.FK_UserService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="UserService" EntitySet="UserService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserService_User" Association="Self.FK_UserService_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserService" EntitySet="UserService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_User" Association="Self.FK_Visit_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Visit" EntitySet="Visit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MedLabModelContainer" CdmEntityContainer="MedLabEntities">
+          <EntitySetMapping Name="Analyzer">
+            <EntityTypeMapping TypeName="MedLabModel.Analyzer">
+              <MappingFragment StoreEntitySet="Analyzer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BioMaterial">
+            <EntityTypeMapping TypeName="MedLabModel.BioMaterial">
+              <MappingFragment StoreEntitySet="BioMaterial">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+                <ScalarProperty Name="DateGetted" ColumnName="DateGetted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuraneCompany">
+            <EntityTypeMapping TypeName="MedLabModel.InsuraneCompany">
+              <MappingFragment StoreEntitySet="InsuraneCompany">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="InsName" ColumnName="InsName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="BIK" ColumnName="BIK" />
+                <ScalarProperty Name="UA" ColumnName="UA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuraneType">
+            <EntityTypeMapping TypeName="MedLabModel.InsuraneType">
+              <MappingFragment StoreEntitySet="InsuraneType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="MedLabModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BioID" ColumnName="BioID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="DateFinished" ColumnName="DateFinished" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AnalyzerID" ColumnName="AnalyzerID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="MedLabModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+                <ScalarProperty Name="InsuraneCompanyID" ColumnName="InsuraneCompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientData">
+            <EntityTypeMapping TypeName="MedLabModel.PatientData">
+              <MappingFragment StoreEntitySet="PatientData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="SocialSecurityNumber" ColumnName="SocialSecurityNumber" />
+                <ScalarProperty Name="EIN" ColumnName="EIN" />
+                <ScalarProperty Name="PassportSerria" ColumnName="PassportSerria" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="InsuraneTypeID" ColumnName="InsuraneTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="MedLabModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="MedLabModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Devision" ColumnName="Devision" />
+                <ScalarProperty Name="DurationInDays" ColumnName="DurationInDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MedLabModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="LastEnter" ColumnName="LastEnter" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserService">
+            <EntityTypeMapping TypeName="MedLabModel.UserService">
+              <MappingFragment StoreEntitySet="UserService">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visit">
+            <EntityTypeMapping TypeName="MedLabModel.Visit">
+              <MappingFragment StoreEntitySet="Visit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TimeVisited" ColumnName="TimeVisited" />
+                <ScalarProperty Name="Success" ColumnName="Success" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
