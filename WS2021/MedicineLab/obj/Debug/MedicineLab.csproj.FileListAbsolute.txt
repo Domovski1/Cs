@@ -1,12 +1,10 @@
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\MedicineLab.exe.config
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\MedicineLab.exe
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\MedicineLab.pdb
-C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MainWindow.g.cs
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\Pages\SignIn.g.cs
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\App.g.cs
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab_MarkupCompile.cache
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab_MarkupCompile.lref
-C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MainWindow.baml
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\Pages\SignIn.baml
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.g.resources
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.Properties.Resources.resources
@@ -21,3 +19,6 @@ C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\EntityFramework.SqlSer
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab_Content.g.cs
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.csproj.CopyComplete
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\MedicineLab.csprojAssemblyReference.cache
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\Windows\MainWindow.g.cs
+C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\obj\Debug\Windows\MainWindow.baml

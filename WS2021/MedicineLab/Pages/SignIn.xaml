@@ -40,14 +40,20 @@
 
             <StackPanel x:Name="PanelCaptcha"
                         Visibility="Collapsed">
-                <TextBlock x:Name="TblockCaptcha"/>
+                <TextBlock x:Name="TblockCaptcha"
+                           TextDecorations="StrikeThrough"/>
                 <Button Content="Новая капча"
+                        Click="BtnRecaptcha_Click"
                         x:Name="BtnRecaptcha"/>
                 <TextBox x:Name="TxbCaptcha"/>
             </StackPanel>
 
-            <Button Content="Показать пароль"/>
-            <Button Content="Войти"/>
+            <Button Content="Показать пароль"
+                    x:Name="BtnShowPassword"
+                    Click="BtnShowPassword_Click"/>
+            <Button Content="Войти"
+                    Name="BtnSignIn"
+                    Click="BtnSignIn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
