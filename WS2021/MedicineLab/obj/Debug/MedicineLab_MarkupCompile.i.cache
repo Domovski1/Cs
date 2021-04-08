@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Domovski\Desktop\Cs\WS2021\MedicineLab\App.xaml
-21214748815
+3-1810268311
 2482335943
-23-231264190
+24-630481455
 182063303829
-Windows\MainWindow.xaml;Pages\SignIn.xaml;
+Pages\WelcomePage.xaml;Windows\MainWindow.xaml;Pages\SignIn.xaml;
 
-False
+True
 
