@@ -199,24 +199,20 @@ namespace PlayerUI
 
 
         Mp3Player mp3Player = new Mp3Player();
-        bool IsPlay = false;
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            IsPlay = !IsPlay;
-            if (IsPlay)
-            {
-                mp3Player.play();
-            } else
-            {
-                mp3Player.stop();
-            }
+                
+            mp3Player.play();   
+            pictureBoxPause.Visible = true;
+            pictureBox2.Visible = false;
+                
         }
 
         public static class NativeMethods
         {
 
             [DllImport("winmm.dll")]
-            internal static extern int waveOutGetVolume(IntPtr hwo, out uint dwVolume);
+            internal static extern int waveOutGetVolume(IntPtr hwo, out uint dwVolume); 
             [DllImport("winmm.dll")]
             internal static extern int waveOutSetVolume(IntPtr hwo, uint dwVolume);
         } // Специальный класс для работы прогарммы с аудио
@@ -229,8 +225,15 @@ namespace PlayerUI
             int NewVolume = ((ushort.MaxValue / 100) * trackBar1.Value);
             uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
             NativeMethods.waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
-            label3.Text = Convert.ToString("Volume: " + trackBar1.Value + "%");
+            label3.Text = Convert.ToString(trackBar1.Value + "%");
         } // Трекбар регулирующий уровень громкости аудио
+
+        private void pictureBoxPause_Click(object sender, EventArgs e)
+        {
+            mp3Player.stop();
+            pictureBox2.Visible = true;
+            pictureBoxPause.Visible = false;
+        }
     }
     
 }
